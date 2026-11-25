@@ -41,16 +41,16 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 12px;
     }
 
     /* Logo */
     .logo {
-      font-size: 1.125rem; /* 18px */
+      font-size: 1.125rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       white-space: nowrap;
@@ -76,7 +76,7 @@
       align-items: center;
       gap: 4px;
       padding: 8px 12px;
-      font-size: 0.9375rem; /* 15px – same range as Neil Patel */
+      font-size: 0.9375rem;
       font-weight: 500;
       color: #e5e5e5;
       border-radius: 6px;
@@ -103,7 +103,7 @@
       transform: rotate(180deg);
     }
 
-    /* Dropdown (white background like Neil Patel) */
+    /* Dropdown (white background) */
     .dropdown {
       position: absolute;
       top: 100%;
@@ -151,11 +151,10 @@
       background: #fff5f0;
     }
 
-    /* CTA + Login */
+    /* CTA only */
     .header-cta {
       display: flex;
       align-items: center;
-      gap: 12px;
       flex-shrink: 0;
     }
 
@@ -163,57 +162,62 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 9px 18px;
+      padding: 9px 16px;
       background: #ff6b35;
       color: #fff;
       font-size: 0.9375rem;
       font-weight: 600;
       border-radius: 6px;
-      transition: background 0.15s, transform 0.1s;
+      transition: background 0.15s;
       white-space: nowrap;
     }
     .btn-kit:hover {
       background: #e85a28;
     }
 
-    .login-link {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: #aaa;
-      padding: 6px 4px;
-      transition: color 0.15s;
-    }
-    .login-link:hover { color: #fff; }
-
-    /* Mobile hamburger */
+    /* ===== Hamburger – high visibility ===== */
     .hamburger {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 5px;
-      width: 40px;
-      height: 40px;
-      padding: 8px;
-      border-radius: 6px;
+      align-items: center;
+      gap: 6px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.12);
+      flex-shrink: 0;
       transition: background 0.15s;
     }
-    .hamburger:hover { background: rgba(255,255,255,0.08); }
+    .hamburger:hover,
+    .hamburger:focus {
+      background: rgba(255,255,255,0.22);
+    }
     .hamburger span {
       display: block;
-      height: 2px;
+      width: 22px;
+      height: 2.5px;
       background: #fff;
-      border-radius: 1px;
+      border-radius: 2px;
       transition: transform 0.25s, opacity 0.25s;
     }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(8.5px) rotate(45deg);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-8.5px) rotate(-45deg);
+    }
 
-    /* Mobile Menu Overlay + Panel (white bg, black text) */
+    /* Mobile Menu Overlay + Panel */
     .mobile-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.45);
+      background: rgba(0,0,0,0.5);
       z-index: 998;
       opacity: 0;
       visibility: hidden;
@@ -228,7 +232,7 @@
       position: fixed;
       top: 0;
       right: 0;
-      width: min(340px, 88vw);
+      width: min(340px, 90vw);
       height: 100%;
       background: #fff;
       color: #111;
@@ -248,22 +252,33 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 20px;
+      padding: 12px 16px;
       border-bottom: 1px solid #eee;
       flex-shrink: 0;
+      min-height: 64px;
     }
     .mobile-menu-header .logo { color: #111; }
+
+    /* Close button – high visibility */
     .mobile-close {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 6px;
-      font-size: 1.5rem;
-      color: #444;
+      border-radius: 8px;
+      background: #f0f0f0;
+      color: #111;
+      font-size: 1.75rem;
+      font-weight: 400;
+      line-height: 1;
+      transition: background 0.15s;
     }
-    .mobile-close:hover { background: #f4f4f5; }
+    .mobile-close:hover,
+    .mobile-close:focus {
+      background: #e0e0e0;
+    }
 
     .mobile-nav {
       padding: 12px 12px 32px;
@@ -280,7 +295,7 @@
       justify-content: space-between;
       width: 100%;
       padding: 14px 12px;
-      font-size: 1rem; /* 16px – comfortable for older eyes */
+      font-size: 1rem;
       font-weight: 500;
       color: #111;
       text-align: left;
@@ -334,37 +349,31 @@
     .mobile-cta {
       padding: 16px 20px 28px;
       border-top: 1px solid #eee;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
     }
     .mobile-cta .btn-kit {
       width: 100%;
-      padding: 13px;
+      padding: 14px;
       font-size: 1rem;
       justify-content: center;
-    }
-    .mobile-cta .login-link {
-      text-align: center;
-      color: #555;
-      font-size: 0.9375rem;
-      padding: 8px;
     }
 
     /* ===== Desktop breakpoint ===== */
     @media (min-width: 960px) {
       .hamburger { display: none; }
       .nav-desktop { display: flex; }
-      .header-cta .login-link { display: inline; }
+      .header-inner { padding: 0 20px; gap: 24px; }
+      .btn-kit { padding: 9px 18px; }
     }
 
-    /* Hide desktop login on very small screens if needed */
+    /* Mobile tweaks for the kit button */
     @media (max-width: 959px) {
-      .header-cta .login-link { display: none; }
-      .header-cta .btn-kit { padding: 8px 14px; font-size: 0.875rem; }
+      .btn-kit {
+        padding: 8px 12px;
+        font-size: 0.8125rem;
+      }
     }
 
-    /* ===== Simple hero placeholder so page isn't empty ===== */
+    /* ===== Hero placeholder ===== */
     .hero {
       max-width: 800px;
       margin: 0 auto;
@@ -470,13 +479,12 @@
         </div>
       </nav>
 
-      <!-- CTA + Login -->
+      <!-- CTA only (Login removed) -->
       <div class="header-cta">
         <a href="/kit" class="btn-kit">Get the Kit – $49</a>
-        <a href="/login" class="login-link">Login</a>
       </div>
 
-      <!-- Hamburger (mobile) -->
+      <!-- Hamburger (mobile) – now much more visible -->
       <button class="hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -563,7 +571,6 @@
 
     <div class="mobile-cta">
       <a href="/kit" class="btn-kit">Get the Kit – $49</a>
-      <a href="/login" class="login-link">Login</a>
     </div>
   </div>
 
@@ -613,7 +620,6 @@
           btn.addEventListener('click', () => {
             const item = btn.parentElement;
             const isOpen = item.classList.contains('open');
-            // Close others
             document.querySelectorAll('.mobile-nav-item.open').forEach(el => el.classList.remove('open'));
             if (!isOpen) item.classList.add('open');
           });
