@@ -399,6 +399,112 @@
       padding: 12px 28px;
       font-size: 1rem;
     }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: #111;
+      color: #ccc;
+      padding: 56px 0 0;
+      margin-top: 60px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+    }
+
+    @media (min-width: 640px) {
+      .footer-grid {
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .footer-grid {
+        grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    .footer-brand .logo {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .footer-brand p {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: #999;
+      max-width: 280px;
+      margin-bottom: 20px;
+    }
+
+    .footer-cta .btn-kit {
+      display: inline-flex;
+    }
+
+    .footer-col h4 {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      font-size: 0.9375rem;
+      color: #aaa;
+      transition: color 0.15s;
+    }
+    .footer-col a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.8125rem;
+      color: #777;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-legal a {
+      font-size: 0.8125rem;
+      color: #777;
+      transition: color 0.15s;
+    }
+    .footer-legal a:hover {
+      color: #ccc;
+    }
   </style>
 </head>
 <body>
@@ -484,7 +590,7 @@
         <a href="/kit" class="btn-kit">Get the Kit – $49</a>
       </div>
 
-      <!-- Hamburger (mobile) – now much more visible -->
+      <!-- Hamburger (mobile) -->
       <button class="hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -582,6 +688,70 @@
       <a href="/kit" class="btn-kit">Get the Kit – $49</a>
     </section>
   </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <!-- Brand + short pitch -->
+        <div class="footer-brand">
+          <a href="/" class="logo">Under<span>5</span>Minutes</a>
+          <p>Practical marketing tactics that take under 5 minutes. Built for busy local business owners who want more customers without the fluff.</p>
+          <div class="footer-cta">
+            <a href="/kit" class="btn-kit">Get the Kit – $49</a>
+          </div>
+        </div>
+
+        <!-- Quick Wins -->
+        <div class="footer-col">
+          <h4>Quick Wins</h4>
+          <ul>
+            <li><a href="/tactics/reviews">Reviews & Reputation</a></li>
+            <li><a href="/tactics/local-maps">Local & Google Maps</a></li>
+            <li><a href="/tactics/seo-ai">SEO & AI Search</a></li>
+            <li><a href="/tactics/content-social">Content & Social</a></li>
+            <li><a href="/tactics/leads">Get More Leads</a></li>
+            <li><a href="/tactics">All tactics →</a></li>
+          </ul>
+        </div>
+
+        <!-- Business Types -->
+        <div class="footer-col">
+          <h4>By Business Type</h4>
+          <ul>
+            <li><a href="/business/restaurants">Restaurants & Cafes</a></li>
+            <li><a href="/business/salons">Salons & Barbers</a></li>
+            <li><a href="/business/contractors">Contractors</a></li>
+            <li><a href="/business/retail">Retail Shops</a></li>
+            <li><a href="/business/health">Health & Wellness</a></li>
+            <li><a href="/business">All types →</a></li>
+          </ul>
+        </div>
+
+        <!-- Company / Resources -->
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="/how-it-works">How It Works</a></li>
+            <li><a href="/free-sample">Free Sample</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/kit">Get the Kit</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Under 5 Minutes. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
     (function () {
