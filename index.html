@@ -139,20 +139,84 @@ dialog{border:none;border-radius:20px;padding:0;max-width:520px;width:calc(100% 
 dialog::backdrop{background:rgba(0,0,0,.55)}
 .modal{padding:24px}.blur{filter:blur(5px);user-select:none;color:var(--muted);background:var(--bg2);border-radius:12px;padding:14px;font-size:14px;line-height:1.9}
 </style>
+<style>
+/* Header/footer styles copied exactly from /how-it-works/ */
+.site-header{position:sticky;top:0;z-index:1000;background:#111;color:#fff;height:64px;display:flex;align-items:center}
+.header-inner{width:100%;max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:1.125rem;font-weight:700}
+.logo span{color:#ff6b35}
+.nav-desktop{display:none;align-items:center;gap:4px;flex:1;justify-content:center}
+.nav-item{position:relative}
+.nav-link{display:flex;align-items:center;gap:4px;padding:8px 12px;font-size:.9375rem;font-weight:500;color:#e5e5e5;border-radius:6px}
+.nav-link:hover,.nav-item:hover>.nav-link{color:#fff;background:rgba(255,255,255,.08)}
+.nav-link .chevron{width:12px;height:12px;stroke:currentColor;stroke-width:2.2;fill:none;transition:transform .2s}
+.nav-item:hover .chevron{transform:rotate(180deg)}
+.dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);min-width:240px;background:#fff;color:#111;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.18);padding:8px;opacity:0;visibility:hidden;z-index:100}
+.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(4px)}
+.dropdown a{display:block;padding:10px 14px;font-size:.9375rem;font-weight:500;color:#222;border-radius:6px}
+.dropdown a:hover{background:#f4f4f5}
+.dropdown a.browse-all{margin-top:4px;border-top:1px solid #eee;padding-top:12px;color:#ff6b35;font-weight:600}
+.btn-kit{display:inline-flex;align-items:center;justify-content:center;padding:9px 16px;background:#ff6b35;color:#fff;font-size:.9375rem;font-weight:600;border-radius:6px;transition:background .15s}
+.btn-kit:hover{background:#e85a28}
+.btn-kit.btn-lg{padding:14px 28px;font-size:1.0625rem}
+.btn-kit.btn-outline{background:transparent;border:2px solid #ff6b35;color:#ff6b35}
+.btn-kit.btn-outline:hover{background:#ff6b35;color:#fff}
+.hamburger{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:44px;height:44px;padding:10px;border-radius:8px;background:rgba(255,255,255,.12)}
+.hamburger span{display:block;width:22px;height:2.5px;background:#fff;border-radius:2px}
+.hamburger.open span:nth-child(1){transform:translateY(8.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}
+.mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:998;opacity:0;visibility:hidden}
+.mobile-overlay.open{opacity:1;visibility:visible}
+.mobile-menu{position:fixed;top:0;right:0;width:min(340px,90vw);height:100%;background:#fff;z-index:999;transform:translateX(100%);transition:transform .28s;display:flex;flex-direction:column;overflow-y:auto}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #eee;min-height:64px}
+.mobile-menu-header .logo{color:#111}
+.mobile-close{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#f0f0f0;font-size:1.75rem}
+.mobile-nav{padding:12px;flex:1}
+.mobile-nav-item{border-bottom:1px solid #f0f0f0}
+.mobile-nav-link{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 12px;font-size:1rem;font-weight:500;color:#111;text-align:left}
+.mobile-nav-link .chevron{width:16px;height:16px;stroke:#666;stroke-width:2;fill:none;transition:transform .2s}
+.mobile-nav-item.open .chevron{transform:rotate(180deg)}
+.mobile-dropdown{max-height:0;overflow:hidden;transition:max-height .3s;background:#fafafa}
+.mobile-nav-item.open .mobile-dropdown{max-height:600px}
+.mobile-dropdown a{display:block;padding:11px 16px 11px 28px;font-size:.9375rem;color:#333}
+.mobile-dropdown a.browse-all{color:#ff6b35;font-weight:600;border-top:1px solid #eee;margin-top:4px;padding-top:12px}
+.mobile-cta{padding:16px 20px 28px;border-top:1px solid #eee}
+.mobile-cta .btn-kit{width:100%;padding:14px;justify-content:center}
+@media(min-width:960px){.hamburger{display:none}.nav-desktop{display:flex}.header-inner{padding:0 20px;gap:24px}}
+.site-footer{background:#111;color:#ccc;padding:56px 0 0}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 20px}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:40px;padding-bottom:48px}
+@media(min-width:640px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr}}
+@media(min-width:960px){.footer-grid{grid-template-columns:1.6fr 1fr 1fr 1fr}}
+.footer-brand .logo{display:inline-block;margin-bottom:14px;color:#fff}
+.footer-brand p{font-size:.9375rem;line-height:1.6;color:#999;max-width:280px;margin-bottom:20px}
+.footer-col h4{font-size:.8125rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#fff;margin-bottom:16px}
+.footer-col ul{display:flex;flex-direction:column;gap:10px}
+.footer-col a{font-size:.9375rem;color:#aaa}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:20px 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.footer-bottom p{font-size:.8125rem;color:#777}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{font-size:.8125rem;color:#777}
+</style>
 </head>
 <body>
-<header><div class="wrap nav">
-  <a class="logo" href="/">Under<span>5</span>Minutes</a>
-  <nav class="navlinks" aria-label="Main">
-    <a href="/tactics">Quick Wins</a>
-    <a href="/types">By Business Type</a>
-    <a href="/how-it-works">How It Works</a>
-    <a href="/free-sample">Free Sample</a>
-    <a href="/blog">Blog</a>
-    <a href="/kit" class="btn btn-accent" style="color:#fff">Get the Kit – $49</a>
-    <details class="mobile-menu"><summary aria-label="Menu">☰</summary><nav><a href="/tactics">Quick Wins</a><a href="/types">By Business Type</a><a href="/how-it-works">How It Works</a><a href="/free-sample">Free Sample</a><a href="/blog">Blog</a><a href="/kit">Get the Kit – $49</a></nav></details>
-  </nav>
-</div></header>
+<header class="site-header"><div class="header-inner"><a href="/" class="logo">Under<span>5</span>Minutes</a>
+    <nav class="nav-desktop"><div class="nav-item"><a href="#" class="nav-link">Quick Wins <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></a><div class="dropdown"><a href="/tactics/reviews">Reviews & Reputation</a><a href="/tactics/local-maps">Local & Google Maps</a><a href="/tactics/seo-ai">SEO & AI Search Quick Wins</a><a href="/tactics/content-social">Content & Social Posts</a><a href="/tactics/email-text">Email & Text Messages</a><a href="/tactics/leads">Get More Leads</a><a href="/tactics/influencer">Influencer & Partnerships</a><a href="/tactics/ecommerce">Online Store Boosters</a><a href="/tactics/paid-ads">Paid Ads on a Tiny Budget</a><a href="/tactics/tools">Tools & Tech Setup</a><a href="/tactics" class="browse-all">Browse all tactics →</a></div></div>
+    <div class="nav-item"><a href="#" class="nav-link">By Business Type <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></a><div class="dropdown"><a href="/business/restaurants">Restaurants & Cafes</a><a href="/business/salons">Salons & Barbers</a><a href="/business/contractors">Contractors & Home Services</a><a href="/business/retail">Retail Shops</a><a href="/business/health">Health & Wellness</a><a href="/business/real-estate">Real Estate</a><a href="/business/education">Education & Tutoring</a><a href="/business/auto">Auto & Repair</a><a href="/business" class="browse-all">All business types →</a></div></div>
+    <div class="nav-item"><a href="/how-it-works" class="nav-link">How It Works</a></div><div class="nav-item"><a href="/free-sample" class="nav-link">Free Sample</a></div>
+    <div class="nav-item"><a href="#" class="nav-link">Blog <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></a><div class="dropdown"><a href="/blog/reviews">Reviews & Reputation</a><a href="/blog/local-maps">Local & Google Maps</a><a href="/blog/seo-ai">SEO & AI Search</a><a href="/blog/content-social">Content & Social</a><a href="/blog/email-text">Email & Text</a><a href="/blog/leads">Leads</a><a href="/blog/influencer">Influencer</a><a href="/blog/ecommerce">Ecommerce</a><a href="/blog/paid-ads">Paid Ads</a><a href="/blog/tools">Tools & Tech</a></div></div></nav>
+    <div class="header-cta"><a href="/kit" class="btn-kit">Get the Kit – $49</a></div>
+    <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button></div></header>
+<div class="mobile-overlay"></div>
+  <div class="mobile-menu"><div class="mobile-menu-header"><a href="/" class="logo">Under<span>5</span>Minutes</a><button class="mobile-close">×</button></div>
+    <nav class="mobile-nav"><div class="mobile-nav-item"><button class="mobile-nav-link">Quick Wins <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="mobile-dropdown"><a href="/tactics/reviews">Reviews & Reputation</a><a href="/tactics/local-maps">Local & Google Maps</a><a href="/tactics/seo-ai">SEO & AI Search Quick Wins</a><a href="/tactics/content-social">Content & Social Posts</a><a href="/tactics/email-text">Email & Text Messages</a><a href="/tactics/leads">Get More Leads</a><a href="/tactics/influencer">Influencer & Partnerships</a><a href="/tactics/ecommerce">Online Store Boosters</a><a href="/tactics/paid-ads">Paid Ads on a Tiny Budget</a><a href="/tactics/tools">Tools & Tech Setup</a><a href="/tactics" class="browse-all">Browse all tactics →</a></div></div>
+    <div class="mobile-nav-item"><button class="mobile-nav-link">By Business Type <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="mobile-dropdown"><a href="/business/restaurants">Restaurants & Cafes</a><a href="/business/salons">Salons & Barbers</a><a href="/business/contractors">Contractors & Home Services</a><a href="/business/retail">Retail Shops</a><a href="/business/health">Health & Wellness</a><a href="/business/real-estate">Real Estate</a><a href="/business/education">Education & Tutoring</a><a href="/business/auto">Auto & Repair</a><a href="/business" class="browse-all">All business types →</a></div></div>
+    <div class="mobile-nav-item"><a href="/how-it-works" class="mobile-nav-link">How It Works</a></div><div class="mobile-nav-item"><a href="/free-sample" class="mobile-nav-link">Free Sample</a></div>
+    <div class="mobile-nav-item"><button class="mobile-nav-link">Blog <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="mobile-dropdown"><a href="/blog/reviews">Reviews & Reputation</a><a href="/blog/local-maps">Local & Google Maps</a><a href="/blog/seo-ai">SEO & AI Search</a><a href="/blog/content-social">Content & Social</a><a href="/blog/email-text">Email & Text</a><a href="/blog/leads">Leads</a><a href="/blog/influencer">Influencer</a><a href="/blog/ecommerce">Ecommerce</a><a href="/blog/paid-ads">Paid Ads</a><a href="/blog/tools">Tools & Tech</a></div></div></nav>
+    <div class="mobile-cta"><a href="/kit" class="btn-kit">Get the Kit – $49</a></div></div>
 
 <main id="top">
 <!-- HERO -->
@@ -251,51 +315,12 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
   <div class="final" style="margin-top:28px"><h2>Your next customer is 5 minutes away.</h2><p>Start with one tactic today. Hand off the other 99 this week.</p><a href="#pricing" class="btn">Get the 100 tactics — $49</a></div>
 </div></section>
 </main>
-<footer class="site-footer"><div class="wrap">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a class="footer-logo" href="/">Under<span>5</span>Minutes</a>
-      <p>Practical marketing tactics that take under 5 minutes. Built for busy local business owners.</p>
-      <a href="/kit" class="btn btn-accent" style="color:#fff">Get the Kit – $49</a>
-    </div>
-    <nav aria-label="Quick Wins">
-      <h4>Quick Wins</h4>
-      <ul class="footer-links">
-        <li><a href="/tactics/reviews">Reviews &amp; Reputation</a></li>
-        <li><a href="/tactics/local-maps">Local &amp; Google Maps</a></li>
-        <li><a href="/tactics/seo-ai">SEO &amp; AI Search</a></li>
-        <li><a href="/tactics/content-social">Content &amp; Social</a></li>
-        <li><a href="/tactics/leads">Get More Leads</a></li>
-        <li><a href="/tactics">All tactics →</a></li>
-      </ul>
-    </nav>
-    <nav aria-label="By Business Type">
-      <h4>By Business Type</h4>
-      <ul class="footer-links">
-        <li><a href="/types/restaurants">Restaurants &amp; Cafes</a></li>
-        <li><a href="/types/salons">Salons &amp; Barbers</a></li>
-        <li><a href="/types/contractors">Contractors</a></li>
-        <li><a href="/types/retail">Retail Shops</a></li>
-        <li><a href="/types/health">Health &amp; Wellness</a></li>
-        <li><a href="/types">All types →</a></li>
-      </ul>
-    </nav>
-    <nav aria-label="Resources">
-      <h4>Resources</h4>
-      <ul class="footer-links">
-        <li><a href="/how-it-works">How It Works</a></li>
-        <li><a href="/free-sample">Free Sample</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/kit">Get the Kit</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 Under 5 Minutes. All rights reserved.</span>
-    <nav aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Use</a></nav>
-  </div>
-</div></footer>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-grid">
+    <div class="footer-brand"><a href="/" class="logo">Under<span>5</span>Minutes</a><p>Practical marketing tactics that take under 5 minutes. Built for busy local business owners.</p><div class="footer-cta"><a href="/kit" class="btn-kit">Get the Kit – $49</a></div></div>
+    <div class="footer-col"><h4>Quick Wins</h4><ul><li><a href="/tactics/reviews">Reviews & Reputation</a></li><li><a href="/tactics/local-maps">Local & Google Maps</a></li><li><a href="/tactics/seo-ai">SEO & AI Search</a></li><li><a href="/tactics/content-social">Content & Social</a></li><li><a href="/tactics/leads">Get More Leads</a></li><li><a href="/tactics">All tactics →</a></li></ul></div>
+    <div class="footer-col"><h4>By Business Type</h4><ul><li><a href="/business/restaurants">Restaurants & Cafes</a></li><li><a href="/business/salons">Salons & Barbers</a></li><li><a href="/business/contractors">Contractors</a></li><li><a href="/business/retail">Retail Shops</a></li><li><a href="/business/health">Health & Wellness</a></li><li><a href="/business">All types →</a></li></ul></div>
+    <div class="footer-col"><h4>Resources</h4><ul><li><a href="/how-it-works">How It Works</a></li><li><a href="/free-sample">Free Sample</a></li><li><a href="/blog">Blog</a></li><li><a href="/kit">Get the Kit</a></li><li><a href="/contact">Contact</a></li></ul></div>
+  </div><div class="footer-bottom"><p>© 2026 Under 5 Minutes. All rights reserved.</p><div class="footer-legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Use</a></div></div></div></footer>
 
 <dialog id="modal"><div class="modal">
   <div style="display:flex;justify-content:space-between;align-items:start;gap:12px"><div><div class="no" id="mNo"></div><h3 id="mTitle" style="font-size:24px;margin-top:6px"></h3></div><button onclick="document.getElementById('modal').close()" style="border:1px solid var(--line);background:var(--card);border-radius:50%;width:40px;height:40px;font-size:18px">✕</button></div>
@@ -424,5 +449,16 @@ render();
 // timer loop 5:00 -> 0
 let s=300;setInterval(()=>{s=s<=0?300:s-1;const m=String(Math.floor(s/60)).padStart(2,'0'),sec=String(s%60).padStart(2,'0');document.getElementById('timer').textContent=`${m}:${sec}`},1000);
 </script>
+<script>
+    (function(){const h=document.querySelector('.hamburger'),m=document.querySelector('.mobile-menu'),o=document.querySelector('.mobile-overlay'),c=document.querySelector('.mobile-close');
+    function open(){h.classList.add('open');m.classList.add('open');o.classList.add('open');document.body.style.overflow='hidden'}
+    function close(){h.classList.remove('open');m.classList.remove('open');o.classList.remove('open');document.body.style.overflow=''}
+    h.addEventListener('click',()=>m.classList.contains('open')?close():open());c.addEventListener('click',close);o.addEventListener('click',close);
+    document.querySelectorAll('.mobile-nav-item > .mobile-nav-link').forEach(btn=>{if(btn.tagName==='BUTTON')btn.addEventListener('click',()=>{const i=btn.parentElement,is=i.classList.contains('open');document.querySelectorAll('.mobile-nav-item.open').forEach(el=>el.classList.remove('open'));if(!is)i.classList.add('open')})});
+    document.querySelectorAll('.nav-item').forEach(item=>{const link=item.querySelector('.nav-link');if(link&&item.querySelector('.dropdown'))link.addEventListener('click',e=>{if(window.innerWidth>=960){e.preventDefault();const w=item.classList.contains('open');document.querySelectorAll('.nav-item.open').forEach(el=>el.classList.remove('open'));if(!w)item.classList.add('open')}})});
+    document.addEventListener('click',e=>{if(!e.target.closest('.nav-item'))document.querySelectorAll('.nav-item.open').forEach(el=>el.classList.remove('open'))});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();document.querySelectorAll('.nav-item.open').forEach(el=>el.classList.remove('open'))}});
+    })();
+  </script>
 </body>
 </html>
