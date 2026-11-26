@@ -132,6 +132,12 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
 
     /* Page styles */
     
+/* Base styles copied from /how-it-works/ and scoped to the navigation, so the nav renders exactly like /how-it-works/ (same font, same button/link resets) */
+.site-header,.mobile-menu,.mobile-overlay{font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.5}
+:where(.site-header,.mobile-menu,.mobile-overlay) *, :where(.site-header,.mobile-menu,.mobile-overlay) *::before, :where(.site-header,.mobile-menu,.mobile-overlay) *::after{margin:0;padding:0}
+:where(.site-header,.mobile-menu,.mobile-overlay) button{font-family:inherit;cursor:pointer;border:none;background:none}
+:where(.site-header,.mobile-menu,.mobile-overlay) a{text-decoration:none;color:inherit}
+:where(.site-header,.mobile-menu,.mobile-overlay) ul{list-style:none}
 /* Footer styles (unchanged) */
 .site-footer{background:#111;color:#ccc;padding:56px 0 0}
 .footer-inner{max-width:1200px;margin:0 auto;padding:0 20px}
