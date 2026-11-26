@@ -1,715 +1,428 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Under 5 Minutes | Quick Wins for Local Businesses</title>
-  <meta name="description" content="Practical marketing tactics that take under 5 minutes. Reviews, local SEO, content, ads, and more for small business owners.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ===== Reset & Base ===== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #1a1a1a;
-      background: #fff;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
-
-    /* ===== Header / Nav ===== */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #111;
-      color: #fff;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 1px 0 rgba(255,255,255,0.08);
-    }
-    .header-inner {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .logo {
-      font-size: 1.125rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .logo span { color: #ff6b35; }
-    .nav-desktop {
-      display: none;
-      align-items: center;
-      gap: 4px;
-      flex: 1;
-      justify-content: center;
-    }
-    .nav-item { position: relative; }
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 8px 12px;
-      font-size: 0.9375rem;
-      font-weight: 500;
-      color: #e5e5e5;
-      border-radius: 6px;
-      transition: color 0.15s, background 0.15s;
-      white-space: nowrap;
-    }
-    .nav-link:hover,
-    .nav-item:hover > .nav-link,
-    .nav-item.open > .nav-link {
-      color: #fff;
-      background: rgba(255,255,255,0.08);
-    }
-    .nav-link .chevron {
-      width: 12px;
-      height: 12px;
-      stroke: currentColor;
-      stroke-width: 2.2;
-      fill: none;
-      transition: transform 0.2s;
-    }
-    .nav-item:hover .chevron,
-    .nav-item.open .chevron { transform: rotate(180deg); }
-    .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(8px);
-      min-width: 240px;
-      background: #fff;
-      color: #111;
-      border-radius: 10px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.04);
-      padding: 8px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
-      z-index: 100;
-    }
-    .nav-item:hover .dropdown,
-    .nav-item.open .dropdown {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(4px);
-    }
-    .dropdown a {
-      display: block;
-      padding: 10px 14px;
-      font-size: 0.9375rem;
-      font-weight: 500;
-      color: #222;
-      border-radius: 6px;
-      transition: background 0.12s, color 0.12s;
-    }
-    .dropdown a:hover { background: #f4f4f5; color: #000; }
-    .dropdown a.browse-all {
-      margin-top: 4px;
-      border-top: 1px solid #eee;
-      padding-top: 12px;
-      color: #ff6b35;
-      font-weight: 600;
-    }
-    .dropdown a.browse-all:hover { background: #fff5f0; }
-    .header-cta { display: flex; align-items: center; flex-shrink: 0; }
-    .btn-kit {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 16px;
-      background: #ff6b35;
-      color: #fff;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      border-radius: 6px;
-      transition: background 0.15s;
-      white-space: nowrap;
-    }
-    .btn-kit:hover { background: #e85a28; }
-    .btn-kit.btn-outline {
-      background: transparent;
-      border: 2px solid #ff6b35;
-      color: #ff6b35;
-    }
-    .btn-kit.btn-outline:hover {
-      background: #ff6b35;
-      color: #fff;
-    }
-    .hamburger {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-      width: 44px;
-      height: 44px;
-      min-width: 44px;
-      padding: 10px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.12);
-      flex-shrink: 0;
-      transition: background 0.15s;
-    }
-    .hamburger:hover, .hamburger:focus { background: rgba(255,255,255,0.22); }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2.5px;
-      background: #fff;
-      border-radius: 2px;
-      transition: transform 0.25s, opacity 0.25s;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
-
-    /* Mobile Menu */
-    .mobile-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 998;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.25s, visibility 0.25s;
-    }
-    .mobile-overlay.open { opacity: 1; visibility: visible; }
-    .mobile-menu {
-      position: fixed; top: 0; right: 0;
-      width: min(340px, 90vw); height: 100%;
-      background: #fff; color: #111;
-      z-index: 999;
-      transform: translateX(100%);
-      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex; flex-direction: column;
-      overflow-y: auto; -webkit-overflow-scrolling: touch;
-    }
-    .mobile-menu.open { transform: translateX(0); }
-    .mobile-menu-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px; border-bottom: 1px solid #eee;
-      flex-shrink: 0; min-height: 64px;
-    }
-    .mobile-menu-header .logo { color: #111; }
-    .mobile-close {
-      width: 44px; height: 44px; min-width: 44px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 8px; background: #f0f0f0; color: #111;
-      font-size: 1.75rem; font-weight: 400; line-height: 1;
-      transition: background 0.15s;
-    }
-    .mobile-close:hover, .mobile-close:focus { background: #e0e0e0; }
-    .mobile-nav { padding: 12px 12px 32px; flex: 1; }
-    .mobile-nav-item { border-bottom: 1px solid #f0f0f0; }
-    .mobile-nav-link {
-      display: flex; align-items: center; justify-content: space-between;
-      width: 100%; padding: 14px 12px;
-      font-size: 1rem; font-weight: 500; color: #111;
-      text-align: left; border-radius: 6px;
-    }
-    .mobile-nav-link:hover { background: #f8f8f8; }
-    .mobile-nav-link .chevron {
-      width: 16px; height: 16px; stroke: #666; stroke-width: 2; fill: none;
-      transition: transform 0.2s; flex-shrink: 0;
-    }
-    .mobile-nav-item.open .chevron { transform: rotate(180deg); }
-    .mobile-dropdown {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.3s ease;
-      background: #fafafa; border-radius: 0 0 8px 8px;
-    }
-    .mobile-nav-item.open .mobile-dropdown { max-height: 600px; }
-    .mobile-dropdown a {
-      display: block; padding: 11px 16px 11px 28px;
-      font-size: 0.9375rem; color: #333; font-weight: 450;
-    }
-    .mobile-dropdown a:hover { background: #f0f0f0; color: #000; }
-    .mobile-dropdown a.browse-all {
-      color: #ff6b35; font-weight: 600;
-      border-top: 1px solid #eee; margin-top: 4px; padding-top: 12px;
-    }
-    .mobile-cta { padding: 16px 20px 28px; border-top: 1px solid #eee; }
-    .mobile-cta .btn-kit { width: 100%; padding: 14px; font-size: 1rem; justify-content: center; }
-
-    @media (min-width: 960px) {
-      .hamburger { display: none; }
-      .nav-desktop { display: flex; }
-      .header-inner { padding: 0 20px; gap: 24px; }
-      .btn-kit { padding: 9px 18px; }
-    }
-    @media (max-width: 959px) {
-      .btn-kit { padding: 8px 12px; font-size: 0.8125rem; }
-    }
-
-    /* ===== HOMEPAGE CONTENT ===== */
-    .hero {
-      background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
-      padding: 72px 24px 64px;
-      text-align: center;
-    }
-    .hero-inner { max-width: 720px; margin: 0 auto; }
-    .hero-badge {
-      display: inline-block;
-      background: #fff5f0;
-      color: #e85a28;
-      font-size: 0.8125rem;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 100px;
-      margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-size: clamp(1.875rem, 5vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 18px;
-      color: #111;
-    }
-    .hero p {
-      font-size: 1.125rem;
-      color: #555;
-      margin-bottom: 32px;
-      line-height: 1.6;
-      max-width: 560px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .hero .btn-kit { padding: 13px 26px; font-size: 1rem; }
-    .hero-note {
-      font-size: 0.875rem;
-      color: #888;
-    }
-
-    /* Social proof bar */
-    .proof-bar {
-      background: #111;
-      color: #fff;
-      padding: 18px 20px;
-      text-align: center;
-      font-size: 0.9375rem;
-    }
-    .proof-bar span { color: #ff6b35; font-weight: 600; }
-
-    /* Section shared */
-    .section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 72px 24px;
-    }
-    .section-header {
-      text-align: center;
-      max-width: 620px;
-      margin: 0 auto 48px;
-    }
-    .section-header h2 {
-      font-size: clamp(1.5rem, 3.5vw, 2rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      color: #111;
-    }
-    .section-header p {
-      font-size: 1.0625rem;
-      color: #555;
-      line-height: 1.6;
-    }
-
-    /* How it works */
-    .steps {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-    @media (min-width: 700px) {
-      .steps { grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    }
-    .step {
-      background: #fafafa;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      padding: 28px 24px;
-      text-align: center;
-    }
-    .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px; height: 36px;
-      background: #ff6b35;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.9375rem;
-      border-radius: 50%;
-      margin-bottom: 16px;
-    }
-    .step h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #111;
-    }
-    .step p {
-      font-size: 0.9375rem;
-      color: #555;
-      line-height: 1.55;
-    }
-
-    /* Tactic cards */
-    .tactics-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    @media (min-width: 600px) {
-      .tactics-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 900px) {
-      .tactics-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .tactic-card {
-      border: 1px solid #eee;
-      border-radius: 12px;
-      padding: 24px 22px;
-      transition: border-color 0.15s, box-shadow 0.15s;
-      background: #fff;
-    }
-    .tactic-card:hover {
-      border-color: #ffd4c2;
-      box-shadow: 0 6px 20px rgba(255,107,53,0.08);
-    }
-    .tactic-card h3 {
-      font-size: 1.0625rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #111;
-    }
-    .tactic-card p {
-      font-size: 0.9375rem;
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 14px;
-    }
-    .tactic-card a {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #ff6b35;
-    }
-    .tactic-card a:hover { text-decoration: underline; }
-
-    /* Why it works */
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    @media (min-width: 700px) {
-      .why-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    .why-item {
-      display: flex;
-      gap: 16px;
-      padding: 8px 0;
-    }
-    .why-icon {
-      flex-shrink: 0;
-      width: 40px; height: 40px;
-      background: #fff5f0;
-      color: #ff6b35;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem;
-      font-weight: 700;
-    }
-    .why-item h3 {
-      font-size: 1.0625rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: #111;
-    }
-    .why-item p {
-      font-size: 0.9375rem;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    /* Final CTA band */
-    .cta-band {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 64px 24px;
-    }
-    .cta-band h2 {
-      font-size: clamp(1.5rem, 3.5vw, 2rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .cta-band p {
-      font-size: 1.0625rem;
-      color: #aaa;
-      margin-bottom: 28px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .cta-band .btn-kit {
-      padding: 14px 28px;
-      font-size: 1rem;
-    }
-
-    /* ===== FOOTER ===== */
-    .site-footer {
-      background: #111;
-      color: #ccc;
-      padding: 56px 0 0;
-    }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      padding-bottom: 48px;
-    }
-    @media (min-width: 640px) {
-      .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; }
-    }
-    @media (min-width: 960px) {
-      .footer-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; }
-    }
-    .footer-brand .logo {
-      display: inline-block;
-      margin-bottom: 14px;
-      color: #fff;
-    }
-    .footer-brand p {
-      font-size: 0.9375rem;
-      line-height: 1.6;
-      color: #999;
-      max-width: 280px;
-      margin-bottom: 20px;
-    }
-    .footer-cta .btn-kit { display: inline-flex; }
-    .footer-col h4 {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #fff;
-      margin-bottom: 16px;
-    }
-    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
-    .footer-col a {
-      font-size: 0.9375rem;
-      color: #aaa;
-      transition: color 0.15s;
-    }
-    .footer-col a:hover { color: #fff; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 20px 0;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .footer-bottom p { font-size: 0.8125rem; color: #777; }
-    .footer-legal { display: flex; gap: 20px; }
-    .footer-legal a {
-      font-size: 0.8125rem;
-      color: #777;
-      transition: color 0.15s;
-    }
-    .footer-legal a:hover { color: #ccc; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>under5minutes.org — 100 Marketing Tactics, Each in Under 5 Minutes</title>
+<meta name="description" content="100 failsafe marketing tactics for small businesses. Each takes 5 minutes or less. $49 one-time. Hand it to whoever built your website.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f6f5f2; --card:#ffffff; --ink:#101210; --muted:#5b625e; --line:#e7e4de;
+  --accent:#e4571d; --accent2:#0d7a63; --accent-soft:#fff1e9; --dark:#111312; --dark2:#1a1d1b;
+  --radius:18px;
+}
+@media(prefers-color-scheme:dark){
+  :root{--bg:#0f1110;--bg2:#171918;--card:#171918;--ink:#f2f2ef;--muted:#a8ada9;--line:#2a2e2b;--accent-soft:#2b1d16;--dark:#f2f2ef}
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:"Public Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+a{color:inherit;text-decoration:none} button{font:inherit;cursor:pointer;min-height:44px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Bricolage Grotesque",sans-serif;line-height:.95;letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(32px,5vw,52px)} p{margin:0}
+/* NAV - clean & simple, as requested */
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.logo{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:20px;letter-spacing:-.03em}
+.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:6px;align-items:center}
+.navlinks a{padding:10px 12px;font-size:14.5px;font-weight:600;color:var(--muted);border-radius:999px}
+.navlinks a:hover{color:var(--ink);background:var(--bg2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:999px;font-weight:700;font-size:15px;border:1px solid var(--ink);white-space:nowrap}
+.btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn:hover{opacity:.92}
+.mobile-menu{display:none}
+@media(max-width:1020px){.navlinks a{padding:10px 7px;font-size:13.5px}.navlinks .btn{padding:11px 14px}.logo{font-size:18px}}
+@media(max-width:760px){.logo{font-size:16px}.nav{gap:8px}.navlinks{gap:6px}.navlinks a{display:none}.navlinks a.btn{display:inline-flex;padding:10px 12px;font-size:13.5px}.mobile-menu{display:block;position:relative}.mobile-menu summary{list-style:none;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;font-size:20px;background:var(--card)}.mobile-menu summary::-webkit-details-marker{display:none}.mobile-menu nav{position:absolute;right:0;top:52px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;min-width:210px;box-shadow:0 16px 32px rgba(0,0,0,.14);display:grid}.mobile-menu nav a{padding:12px;border-radius:10px;font-weight:700;font-size:15px}.mobile-menu nav a:hover{background:var(--bg2)}}
+/* HERO */
+.hero{padding:56px 0 28px;background:var(--bg)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;padding:8px 12px;border-radius:999px}
+.hero h1{font-size:clamp(44px,7vw,76px);margin:18px 0 16px}
+.hero h1 em{font-style:normal;color:var(--accent);text-decoration:underline;text-decoration-thickness:5px;text-underline-offset:6px}
+.lede{font-size:19px;color:var(--muted);max-width:600px}
+.lede strong{color:var(--ink)}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 18px}
+.micro{font-size:13.5px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.micro b{color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:28px}
+.stat{padding:16px 14px;background:var(--card);border-right:1px solid var(--line)} .stat:last-child{border:0}
+.stat strong{font-family:"Bricolage Grotesque";font-size:26px;display:block;line-height:1}.stat span{font-size:12.5px;color:var(--muted);font-weight:600}
+@media(max-width:560px){.stats{grid-template-columns:1fr 1fr}.stat{border-bottom:1px solid var(--line)}}
+/* timer card */
+.timer-card{background:#111312;color:#fff;border-radius:22px;padding:22px;box-shadow:0 20px 40px rgba(0,0,0,.18)}
+.timer-top{display:flex;justify-content:space-between;align-items:center}
+.timer{font-family:"Bricolage Grotesque";font-size:64px;line-height:1;font-variant-numeric:tabular-nums}
+.pill{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:#222;color:#ffb59d}
+.task-mini{border-top:1px solid #2b2e2c;padding:13px 0;display:flex;gap:12px;align-items:flex-start}
+.task-mini:last-child{padding-bottom:2px}
+.num{width:32px;height:32px;flex:0 0 32px;border-radius:50%;background:#fff;color:#111;display:grid;place-items:center;font-weight:800;font-size:13px}
+.task-mini strong{display:block;font-size:15px}.task-mini span{font-size:13px;color:#b9beb9}
+/* sections */
+section{padding:64px 0} .alt{background:var(--bg2)}
+.sec-head{max-width:720px;margin-bottom:28px}.sec-head p{color:var(--muted);font-size:17px;margin-top:12px}
+.kicker{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+/* handoff */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:800px){.steps{grid-template-columns:1fr}}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.step i{font-style:normal;width:42px;height:42px;border-radius:12px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:800;font-family:"Bricolage Grotesque";font-size:19px;margin-bottom:14px}
+.step h3{font-size:21px;margin-bottom:8px}.step p{color:var(--muted);font-size:15px}
+.handoff-note{margin-top:16px;background:#111312;color:#fff;border-radius:var(--radius);padding:22px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+@media(max-width:700px){.handoff-note{grid-template-columns:1fr}}
+.handoff-note h3{font-size:22px}.handoff-note p{color:#c6cbc6;font-size:15px;margin-top:6px}
+/* filters */
+.toolbar{position:sticky;top:68px;z-index:20;background:var(--bg);padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:20px}
+.search{width:100%;padding:13px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:15px;min-height:48px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:700;font-size:13.5px;min-height:38px}
+.chip.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.countline{font-size:14px;color:var(--muted);margin:6px 0 16px}.countline strong{color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}} @media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;text-align:left;width:100%;display:block;color:var(--ink)}
+.card:hover{border-color:var(--ink)}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.no{font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--muted)}
+.time{font-size:12px;font-weight:800;background:#e8f5f1;color:#0d7a63;padding:5px 8px;border-radius:999px}
+@media(prefers-color-scheme:dark){.time{background:#16382f;color:#7ee0c3}}
+.card h3{font-size:18px;line-height:1.15;margin-bottom:8px;font-family:"Public Sans";font-weight:800;letter-spacing:-.01em}
+.card p{font-size:14px;color:var(--muted);line-height:1.45;min-height:40px}
+.card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;font-weight:700}
+.lock{color:var(--muted);font-weight:600;display:flex;gap:6px;align-items:center}
+.unlock{color:var(--accent)}
+/* compare */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.compare{grid-template-columns:1fr}}
+.box{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:var(--card)}
+.box.dark{background:#111312;color:#fff;border-color:#111}
+.box ul{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px;font-size:15px}
+.box li{display:flex;gap:10px}.box li::before{content:"✓";font-weight:800;color:var(--accent2)} .box.dark li::before{color:#ff8a5c}
+/* pricing */
+.pricing{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:start}
+@media(max-width:820px){.pricing{grid-template-columns:1fr}}
+.price-card{background:#111312;color:#fff;border-radius:24px;padding:28px}
+.price{font-family:"Bricolage Grotesque";font-size:72px;line-height:1}.price sup{font-size:28px}
+.price-card ul{list-style:none;padding:0;margin:20px 0;display:grid;gap:11px;color:#d8dbd8}
+.price-card li::before{content:"✓  ";color:#ff8a5c;font-weight:800}
+.faq{display:grid;gap:10px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+summary{font-weight:700;cursor:pointer;min-height:36px;display:flex;align-items:center}
+details p{color:var(--muted);margin-top:8px;font-size:15px}
+/* SITE FOOTER — matches live interior pages */
+.site-footer{background:#111312;color:#c9cdc9;padding:56px 0 0;font-size:14.5px;margin-top:0}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;padding-bottom:40px}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.footer-grid{grid-template-columns:1fr}}
+.footer-logo{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;letter-spacing:-.03em;color:#fff;display:inline-block}
+.footer-logo span{color:var(--accent)}
+.footer-brand p{color:#aeb4ae;font-size:15px;line-height:1.6;margin:14px 0 20px;max-width:300px}
+.site-footer h4{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin:6px 0 16px;font-family:"Public Sans",sans-serif}
+.footer-links{list-style:none;padding:0;margin:0;display:grid;gap:11px}
+.footer-links a{color:#c9cdc9;font-size:14.5px}
+.footer-links a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.footer-bottom{border-top:1px solid #2a2e2b;padding:20px 0 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:#9aa09a;font-size:13.5px}
+.footer-bottom nav{display:flex;gap:22px;flex-wrap:wrap}
+.footer-bottom a{color:#c9cdc9}
+.footer-bottom a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.final{background:var(--accent);color:#fff;border-radius:24px;padding:32px;text-align:center}
+.final h2{color:#fff}.final p{opacity:.92;margin:12px auto 20px;max-width:560px}
+.final .btn{background:#fff;color:#111;border-color:#fff}
+/* modal */
+dialog{border:none;border-radius:20px;padding:0;max-width:520px;width:calc(100% - 32px);background:var(--card);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.modal{padding:24px}.blur{filter:blur(5px);user-select:none;color:var(--muted);background:var(--bg2);border-radius:12px;padding:14px;font-size:14px;line-height:1.9}
+</style>
 </head>
 <body>
+<header><div class="wrap nav">
+  <a class="logo" href="/">Under<span>5</span>Minutes</a>
+  <nav class="navlinks" aria-label="Main">
+    <a href="/tactics">Quick Wins</a>
+    <a href="/types">By Business Type</a>
+    <a href="/how-it-works">How It Works</a>
+    <a href="/free-sample">Free Sample</a>
+    <a href="/blog">Blog</a>
+    <a href="/kit" class="btn btn-accent" style="color:#fff">Get the Kit – $49</a>
+    <details class="mobile-menu"><summary aria-label="Menu">☰</summary><nav><a href="/tactics">Quick Wins</a><a href="/types">By Business Type</a><a href="/how-it-works">How It Works</a><a href="/free-sample">Free Sample</a><a href="/blog">Blog</a><a href="/kit">Get the Kit – $49</a></nav></details>
+  </nav>
+</div></header>
 
-  <!-- ===== HEADER ===== -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="/" class="logo">Under<span>5</span>Minutes</a>
-
-      <nav class="nav-desktop" aria-label="Main">
-        <div class="nav-item">
-          <a href="/tactics/" class="nav-link">
-            Quick Wins
-            <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </a>
-          <div class="dropdown">
-            <a href="/tactics/reviews">Reviews & Reputation</a>
-            <a href="/tactics/local-maps">Local & Google Maps</a>
-            <a href="/tactics/seo-ai">SEO & AI Search Quick Wins</a>
-            <a href="/tactics/content-social">Content & Social Posts</a>
-            <a href="/tactics/email-text">Email & Text Messages</a>
-            <a href="/tactics/leads">Get More Leads</a>
-            <a href="/tactics/influencer">Influencer & Partnerships</a>
-            <a href="/tactics/ecommerce">Online Store Boosters</a>
-            <a href="/tactics/paid-ads">Paid Ads on a Tiny Budget</a>
-            <a href="/tactics/tools">Tools & Tech Setup</a>
-            <a href="/tactics" class="browse-all">Browse all tactics →</a>
-          </div>
-        </div>
-
-        <div class="nav-item">
-          <a href="/business/" class="nav-link">
-            By Business Type
-            <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </a>
-          <div class="dropdown">
-            <a href="/business/restaurants">Restaurants & Cafes</a>
-            <a href="/business/salons">Salons & Barbers</a>
-            <a href="/business/contractors">Contractors & Home Services</a>
-            <a href="/business/retail">Retail Shops</a>
-            <a href="/business/health">Health & Wellness</a>
-            <a href="/business/real-estate">Real Estate</a>
-            <a href="/business/education">Education & Tutoring</a>
-            <a href="/business/auto">Auto & Repair</a>
-            <a href="/business" class="browse-all">All business types →</a>
-          </div>
-        </div>
-
-        <div class="nav-item">
-          <a href="/how-it-works" class="nav-link">How It Works</a>
-        </div>
-
-        <div class="nav-item">
-          <a href="/free-sample" class="nav-link">Free Sample</a>
-        </div>
-
-        <div class="nav-item">
-          <a href="#" class="nav-link">
-            Blog
-            <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </a>
-          <div class="dropdown">
-            <a href="/blog/reviews">Reviews & Reputation</a>
-            <a href="/blog/local-maps">Local & Google Maps</a>
-            <a href="/blog/seo-ai">SEO & AI Search</a>
-            <a href="/blog/content-social">Content & Social</a>
-            <a href="/blog/email-text">Email & Text</a>
-            <a href="/blog/leads">Leads</a>
-            <a href="/blog/influencer">Influencer</a>
-            <a href="/blog/ecommerce">Ecommerce</a>
-            <a href="/blog/paid-ads">Paid Ads</a>
-            <a href="/blog/tools">Tools & Tech</a>
-          </div>
-        </div>
-      </nav>
-
-      <div class="header-cta">
-        <a href="/kit" class="btn-kit">Get the Kit – $49</a>
-      </div>
-
-      <button class="hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+<main id="top">
+<!-- HERO -->
+<div class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">⏱ For small businesses with no marketing department</span>
+    <h1>100 marketing tactics.<br>Each in <em>under 5 minutes.</em></h1>
+    <p class="lede">No agency. No monthly retainer. No 40-page strategy deck. Just <strong>100 failsafe, step-by-step tactics</strong> you can hand to the person who built your website — and watch get done, one quick win at a time.</p>
+    <div class="ctas">
+      <a href="#tactics" class="btn btn-accent">Preview all 100 tactics ↓</a>
+      <a href="#pricing" class="btn btn-ghost">Get full access — $49</a>
     </div>
-  </header>
-
-  <div class="mobile-overlay" aria-hidden="true"></div>
-  <div class="mobile-menu" role="dialog" aria-label="Mobile navigation">
-    <div class="mobile-menu-header">
-      <a href="/" class="logo">Under<span>5</span>Minutes</a>
-      <button class="mobile-close" aria-label="Close menu">×</button>
-    </div>
-    <nav class="mobile-nav">
-      <div class="mobile-nav-item">
-        <button class="mobile-nav-link">
-          Quick Wins
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="mobile-dropdown">
-          <a href="/tactics/reviews">Reviews & Reputation</a>
-          <a href="/tactics/local-maps">Local & Google Maps</a>
-          <a href="/tactics/seo-ai">SEO & AI Search Quick Wins</a>
-          <a href="/tactics/content-social">Content & Social Posts</a>
-          <a href="/tactics/email-text">Email & Text Messages</a>
-          <a href="/tactics/leads">Get More Leads</a>
-          <a href="/tactics/influencer">Influencer & Partnerships</a>
-          <a href="/tactics/ecommerce">Online Store Boosters</a>
-          <a href="/tactics/paid-ads">Paid Ads on a Tiny Budget</a>
-          <a href="/tactics/tools">Tools & Tech Setup</a>
-          <a href="/tactics" class="browse-all">Browse all tactics →</a>
-        </div>
-      </div>
-      <div class="mobile-nav-item">
-        <button class="mobile-nav-link">
-          By Business Type
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="mobile-dropdown">
-          <a href="/business/restaurants">Restaurants & Cafes</a>
-          <a href="/business/salons">Salons & Barbers</a>
-          <a href="/business/contractors">Contractors & Home Services</a>
-          <a href="/business/retail">Retail Shops</a>
-          <a href="/business/health">Health & Wellness</a>
-          <a href="/business/real-estate">Real Estate</a>
-          <a href="/business/education">Education & Tutoring</a>
-          <a href="/business/auto">Auto & Repair</a>
-          <a href="/business" class="browse-all">All business types →</a>
-        </div>
-      </div>
-      <div class="mobile-nav-item">
-        <a href="/how-it-works" class="mobile-nav-link">How It Works</a>
-      </div>
-      <div class="mobile-nav-item">
-        <a href="/free-sample" class="mobile-nav-link">Free Sample</a>
-      </div>
-      <div class="mobile-nav-item">
-        <button class="mobile-nav-link">
-          Blog
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="mobile-dropdown">
-          <a href="/blog/reviews">Reviews & Reputation</a>
-          <a href="/blog/local-maps">Local & Google Maps</a>
-          <a href="/blog/seo-ai">SEO & AI Search</a>
-          <a href="/blog/content-social">Content & Social</a>
-          <a href="/blog/email-text">Email & Text</a>
-          <a href="/blog/leads">Leads</a>
-          <a href="/blog/influencer">Influencer</a>
-          <a href="/blog/ecommerce">Ecommerce</a>
-          <a href="/blog/paid-ads">Paid Ads</a>
-          <a href="/blog/tools">Tools & Tech</a>
-        </div>
-      </div>
-    </nav>
-    <div class="mobile-cta">
-      <a href="/kit" class="btn-kit">Get the Kit – $49</a>
+    <div class="micro"><span>✓ <b>One-time $49</b></span><span>✓ No subscription</span><span>✓ Instant access</span><span>✓ Hand-off ready</span></div>
+    <div class="stats">
+      <div class="stat"><strong>100</strong><span>tactics included</span></div>
+      <div class="stat"><strong>≤ 5 min</strong><span>per tactic</span></div>
+      <div class="stat"><strong>$49</strong><span>one-time, total</span></div>
+      <div class="stat"><strong>$0.49</strong><span>per tactic</span></div>
     </div>
   </div>
+  <div class="timer-card" aria-label="Example tactics">
+    <div class="timer-top"><div><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#9aa09a;font-weight:800">Time on the clock</div><div class="timer" id="timer">05:00</div></div><span class="pill">Failsafe only</span></div>
+    <p style="color:#b9beb9;font-size:14px;margin:6px 0 8px">Every tactic is timed, tested, and written so a non-marketer can finish it before the timer runs out.</p>
+    <div class="task-mini"><span class="num">15</span><div><strong>Create a Google short link for reviews</strong><span>Google &amp; Search · 2 min</span></div></div>
+    <div class="task-mini"><span class="num">43</span><div><strong>Add a one-tap call button to your site</strong><span>Website Wins · 4 min</span></div></div>
+    <div class="task-mini"><span class="num">58</span><div><strong>Text past customers a comeback offer</strong><span>Email, Text &amp; Follow-Up · 5 min</span></div></div>
+    <div class="task-mini"><span class="num">86</span><div><strong>Launch a simple referral reward</strong><span>Offers &amp; Referrals · 5 min</span></div></div>
+  </div>
+</div></div>
 
-  <!-- NOTE: The full original body content (hero, sections, footer, scripts) is restored from the local backup. This call contains the complete file. -->
+<!-- HANDOFF -->
+<section id="handoff" class="alt" style="padding-top:48px"><div class="wrap">
+  <div class="sec-head"><div class="kicker">Built for the hand-off</div><h2>You don't have to do the marketing. You just have to hand this off.</h2><p>Most small businesses already have someone — a family member, a friend, a staffer, or the freelancer from Fiverr who built the site. This package was designed for them.</p></div>
+  <div class="steps" id="how">
+    <article class="step"><i>1</i><h3>Get the package for $49</h3><p>Instant access to all 100 tactics with the exact steps, copy, links, and settings for each one. One payment. Yours to keep.</p></article>
+    <article class="step"><i>2</i><h3>Hand it to your person</h3><p>Forward it to whoever built your website or helps with tech. No marketing experience needed — each tactic explains itself.</p></article>
+    <article class="step"><i>3</i><h3>They knock them out, 5 minutes at a time</h3><p>One tactic on a coffee break. Five on a slow afternoon. Work down the checklist in any order and check them off as you go.</p></article>
+  </div>
+  <div class="handoff-note"><div><h3>“Can you just do these for me?” — that's the whole idea.</h3><p>Share the checklist, share the link, or forward the file. Your helper doesn't need a brief, a meeting, or a marketing degree. The next step is always written on the page.</p></div><a href="#tactics" class="btn" style="background:#fff;color:#111;border-color:#fff">See what they'd be doing →</a></div>
+</div></section>
+
+<!-- TACTICS PREVIEW -->
+<section id="tactics"><div class="wrap">
+  <div class="sec-head"><div class="kicker">Light preview — full steps locked</div><h2>Preview all 100. Unlock the how for $49.</h2><p>Browse every tactic below: what it is, what it does for you, and how long it takes. The step-by-step instructions, exact wording, and settings stay locked until you buy — so you can get interested without getting the strategy for free.</p></div>
+  <div class="toolbar">
+    <input class="search" id="search" type="search" placeholder="Search tactics — try “reviews”, “Google”, “referral”, “text”…">
+    <div class="chips" id="chips"></div>
+  </div>
+  <p class="countline" id="countline"></p>
+  <div class="grid" id="grid"></div>
+  <div style="text-align:center;margin-top:28px;background:var(--bg2);border:1px dashed var(--line);border-radius:16px;padding:22px">
+    <strong style="font-family:'Bricolage Grotesque';font-size:22px">🔒 You're seeing the preview. Buyers see the playbook.</strong>
+    <p style="color:var(--muted);margin:8px auto 16px;max-width:560px">Every card above unlocks into full step-by-step instructions, copy-paste text, and a done-for-you checklist.</p>
+    <a href="#pricing" class="btn btn-accent">Unlock all 100 — $49 one-time</a>
+  </div>
+</div></section>
+
+<!-- PREVIEW VS FULL -->
+<section class="alt"><div class="wrap">
+  <div class="sec-head"><div class="kicker">What's inside</div><h2>Preview vs. full access</h2></div>
+  <div class="compare">
+    <div class="box"><h3 style="font-size:24px">Free preview — on this page</h3><ul><li>Tactic title &amp; category</li><li>What it does for your business, in one line</li><li>Exact time it takes (2–5 minutes)</li><li>Browse, search &amp; filter all 100</li></ul></div>
+    <div class="box dark"><h3 style="font-size:24px">Full access — $49</h3><ul><li>Step-by-step instructions for all 100 tactics</li><li>Copy-paste posts, texts, emails &amp; replies</li><li>Exact settings, links &amp; screenshots guidance</li><li>Shareable 100-tactic checklist for your helper</li><li>Hand-off sheet: what to ask, in what order</li></ul></div>
+  </div>
+</div></section>
+
+<!-- PRICING -->
+<section id="pricing"><div class="wrap">
+  <div class="sec-head"><div class="kicker">Simple pricing</div><h2>Less than one hour of an agency's time. For 100 tactics.</h2><p>Agencies charge hundreds per hour. A marketing hire costs thousands per month. This is $49, once.</p></div>
+  <div class="pricing">
+    <div class="price-card">
+      <div style="display:flex;justify-content:space-between;align-items:start"><div><div style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:12px;color:#ffab8f">The complete package</div><div class="price"><sup>$</sup>49</div><div style="color:#b9beb9">one-time · no subscription · yours to keep</div></div><span class="pill">100 tactics</span></div>
+      <ul><li>All 100 tactics, fully unlocked</li><li>Every tactic timed at 5 minutes or under</li><li>Written for a non-marketer to execute</li><li>Shareable checklist + hand-off sheet</li><li>Instant access after checkout</li></ul>
+      <a href="#faq" class="btn btn-accent" style="width:100%;padding:16px" onclick="document.getElementById('buyNote').style.display='block';return false;">Get instant access — $49 →</a>
+      <p id="buyNote" style="display:none;margin-top:12px;background:#222;padding:12px;border-radius:10px;font-size:14px;color:#fff">Checkout is being connected for under5minutes.org. Join by previewing the tactics above — the $49 package will be available at this button.</p>
+      <p style="font-size:13px;color:#9aa09a;margin-top:12px;text-align:center">Secure checkout · Keep forever · Do them in any order</p>
+    </div>
+    <div>
+      <div class="box" style="margin-bottom:14px"><h3 style="font-size:21px">Who this is perfect for</h3><ul><li>Plumbers, salons, dentists, realtors, cafés, shops, coaches &amp; local services</li><li>Owners who are great at the work, not at marketing it</li><li>Anyone whose “marketing department” is a relative with a laptop</li></ul></div>
+      <div class="box"><h3 style="font-size:21px">Who it's not for</h3><ul><li>Companies with an in-house marketing team</li><li>Anyone looking for a months-long brand strategy</li><li>Businesses that won't spare 5 minutes at a time</li></ul></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section id="faq" class="alt"><div class="wrap" style="max-width:820px">
+  <div class="sec-head"><div class="kicker">Questions</div><h2>Before you ask…</h2></div>
+  <div class="faq">
+    <details open><summary>Do the tactics really take under 5 minutes?</summary><p>Yes — that's the filter every tactic had to pass. If it couldn't be finished in 5 minutes by a non-marketer following the steps, it didn't make the list of 100.</p></details>
+    <details><summary>I'm not tech-savvy. Can someone else do these for me?</summary><p>That's exactly how it's designed to be used. Hand the package to the person who built your website, a family member, a friend, or a staff member. Each tactic is self-contained with clear steps.</p></details>
+    <details><summary>What do I get in the free preview?</summary><p>The title, category, benefit, and time for all 100 tactics — enough to see the value and plan. The actual steps, wording, and settings are in the paid package.</p></details>
+    <details><summary>Is it $49 every month?</summary><p>No. $49 once. No subscription, no upsell required to unlock the 100, and you keep access to the package you bought.</p></details>
+    <details><summary>What kind of businesses does this work for?</summary><p>Local and small businesses in America — trades, retail, food, health &amp; beauty, professional services, real estate, fitness, and online sellers. If customers need to find, trust, and contact you, these tactics apply.</p></details>
+    <details><summary>Do I need any paid tools?</summary><p>No. The tactics use free tools and features you likely already have — Google, social platforms, your website, email, and texting.</p></details>
+  </div>
+  <div class="final" style="margin-top:28px"><h2>Your next customer is 5 minutes away.</h2><p>Start with one tactic today. Hand off the other 99 this week.</p><a href="#pricing" class="btn">Get the 100 tactics — $49</a></div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="footer-logo" href="/">Under<span>5</span>Minutes</a>
+      <p>Practical marketing tactics that take under 5 minutes. Built for busy local business owners.</p>
+      <a href="/kit" class="btn btn-accent" style="color:#fff">Get the Kit – $49</a>
+    </div>
+    <nav aria-label="Quick Wins">
+      <h4>Quick Wins</h4>
+      <ul class="footer-links">
+        <li><a href="/tactics/reviews">Reviews &amp; Reputation</a></li>
+        <li><a href="/tactics/local-maps">Local &amp; Google Maps</a></li>
+        <li><a href="/tactics/seo-ai">SEO &amp; AI Search</a></li>
+        <li><a href="/tactics/content-social">Content &amp; Social</a></li>
+        <li><a href="/tactics/leads">Get More Leads</a></li>
+        <li><a href="/tactics">All tactics →</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="By Business Type">
+      <h4>By Business Type</h4>
+      <ul class="footer-links">
+        <li><a href="/types/restaurants">Restaurants &amp; Cafes</a></li>
+        <li><a href="/types/salons">Salons &amp; Barbers</a></li>
+        <li><a href="/types/contractors">Contractors</a></li>
+        <li><a href="/types/retail">Retail Shops</a></li>
+        <li><a href="/types/health">Health &amp; Wellness</a></li>
+        <li><a href="/types">All types →</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Resources">
+      <h4>Resources</h4>
+      <ul class="footer-links">
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/free-sample">Free Sample</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/kit">Get the Kit</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Under 5 Minutes. All rights reserved.</span>
+    <nav aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Use</a></nav>
+  </div>
+</div></footer>
+
+<dialog id="modal"><div class="modal">
+  <div style="display:flex;justify-content:space-between;align-items:start;gap:12px"><div><div class="no" id="mNo"></div><h3 id="mTitle" style="font-size:24px;margin-top:6px"></h3></div><button onclick="document.getElementById('modal').close()" style="border:1px solid var(--line);background:var(--card);border-radius:50%;width:40px;height:40px;font-size:18px">✕</button></div>
+  <p id="mTeaser" style="color:var(--muted);margin-top:10px"></p>
+  <div style="display:flex;gap:8px;margin:14px 0"><span class="time" id="mTime"></span><span class="time" style="background:var(--bg2);color:var(--muted)" id="mCat"></span></div>
+  <div style="font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Step-by-step — locked 🔒</div>
+  <div class="blur">Step 1: Open the exact page and click…<br>Step 2: Paste this ready-made wording…<br>Step 3: Turn on this setting and save…<br>Done — here's how to check it worked…</div>
+  <a href="#pricing" class="btn btn-accent" style="width:100%;margin-top:16px" onclick="document.getElementById('modal').close()">Unlock this + all 100 — $49</a>
+</div></dialog>
+
+<script>
+const T=[
+["Complete your Google Business Profile 100%","Google & Search",4,"Show up fully when locals search for what you do."],
+["Add your 5 best photos to Google","Google & Search",3,"Listings with real photos get more calls and taps."],
+["Add every service you offer to Google","Google & Search",5,"Get found for each service, not just your business name."],
+["Set your exact hours + holiday hours","Google & Search",2,"Stop losing customers who think you're closed."],
+["Turn on Google messaging / chat","Google & Search",3,"Let searchers message you without visiting your site."],
+["Add a Google booking / appointment link","Google & Search",4,"Turn a search result into a booked job."],
+["Write your 750-char Google description","Google & Search",5,"Tell Google — and customers — exactly who you help."],
+["Add products to your Google listing","Google & Search",5,"Show what you sell right in search results."],
+["Post a Google update / offer","Google & Search",4,"Appear active and current in Maps and Search."],
+["Fix your name, address & phone everywhere","Google & Search",5,"Consistent info = higher local ranking and trust."],
+["Add your business to Apple Maps","Google & Search",4,"Get found by every iPhone user nearby."],
+["Add your business to Bing Places","Google & Search",4,"Capture the searchers Google misses."],
+["Add keywords to your homepage title","Google & Search",5,"Help Google match you to ready-to-buy searches."],
+["Add your city to your homepage headline","Google & Search",3,"Instantly signal you're the local choice."],
+["Create a Google short link for reviews","Google & Search",2,"One short link you can text, post, and share."],
+["Ask your happiest customer for a review","Reviews & Trust",2,"One personal ask beats a month of hoping."],
+["Text a review link right after the job","Reviews & Trust",2,"Catch customers at peak happiness."],
+["Reply to every Google review","Reviews & Trust",5,"Replies build trust with the next reader."],
+["Add a review QR code to receipts","Reviews & Trust",4,"Turn every sale into a chance for 5 stars."],
+["Put your best review on your homepage","Reviews & Trust",4,"Social proof where buying decisions happen."],
+["Add reviews to your checkout / booking page","Reviews & Trust",5,"Remove last-second doubt before payment."],
+["Ask for a Yelp review the right way","Reviews & Trust",3,"Grow trust on the platform many locals check first."],
+["Claim your Yelp business page","Reviews & Trust",5,"Control your photos, hours, and info on Yelp."],
+["Add a testimonial to your email signature","Reviews & Trust",3,"Every email quietly sells for you."],
+["Turn a great review into a social post","Reviews & Trust",4,"One review becomes content in minutes."],
+["Add trust badges to your website footer","Reviews & Trust",4,"Licensed, insured, guaranteed — visible everywhere."],
+["Record a 30-second customer thank-you video","Reviews & Trust",5,"Authentic proof no competitor can copy."],
+["Post a before-and-after photo","Social Media",4,"Visual proof stops the scroll and sells the result."],
+["Post a 'meet the owner' intro","Social Media",5,"People buy from people they feel they know."],
+["Share a quick tip your customers need","Social Media",5,"Position you as the helpful local expert."],
+["Post today's opening / availability","Social Media",2,"Fill slow slots by simply announcing them."],
+["Repost your best-ever post","Social Media",2,"Winners deserve a second audience."],
+["Add your link & phone to every bio","Social Media",4,"Make every profile one tap from a sale."],
+["Pin your offer post to the top","Social Media",2,"Every visitor sees your best offer first."],
+["Go live for 3 minutes: show the work","Social Media",5,"Live video gets pushed to more followers, free."],
+["Post a customer shout-out (with permission)","Social Media",3,"Gratitude that doubles as social proof."],
+["Use 5 local hashtags that actually work","Social Media",3,"Get discovered by nearby buyers, not bots."],
+["Add captions to a short video","Social Media",5,"Most people watch on mute — don't lose them."],
+["Share a Google review as an image post","Social Media",4,"Turn trust into reach in one screenshot."],
+["Post a FAQ answer as a Reel / TikTok","Social Media",5,"Answer once, get found all month."],
+["Tag your location in every post","Social Media",2,"Local tags = local discovery."],
+["Invite past engagers to follow / like","Social Media",3,"Warm audiences convert better than cold ads."],
+["Add a one-tap call button to your site","Website Wins",4,"Remove friction between visitor and phone call."],
+["Add a sticky header with phone number","Website Wins",5,"Your number stays visible on every scroll."],
+["Put your offer above the fold","Website Wins",4,"Visitors decide in seconds — lead with the offer."],
+["Add a clear 'Get a Quote' button","Website Wins",3,"One obvious next step beats five vague ones."],
+["Speed-check your site & fix the big one","Website Wins",5,"Slow sites quietly lose mobile customers."],
+["Add photos of your real team & work","Website Wins",5,"Stock photos erode trust; real photos build it."],
+["Add an FAQ section to your homepage","Website Wins",5,"Answer objections before they leave."],
+["Add live chat or a contact shortcut","Website Wins",5,"Capture questions while intent is hot."],
+["Make your contact form 3 fields only","Website Wins",4,"Shorter forms get completed more often."],
+["Add click-to-text to your website","Website Wins",4,"Many customers prefer texting to calling."],
+["Add your hours & map to the contact page","Website Wins",3,"Make visiting you effortless."],
+["Fix your 404 page with a helpful offer","Website Wins",3,"Turn dead ends into second chances."],
+["Add a lead magnet / free checklist offer","Website Wins",5,"Trade something useful for an email address."],
+["Check your site on your phone & fix #1 issue","Website Wins",5,"Most visitors are mobile — see what they see."],
+["Add schema / local business info","Website Wins",5,"Help Google display your details richly."],
+["Text past customers a comeback offer","Email, Text & Follow-Up",5,"Your cheapest sale is a past customer."],
+["Email your list one helpful tip + offer","Email, Text & Follow-Up",5,"Stay top-of-mind without being salesy."],
+["Set up a missed-call text-back","Email, Text & Follow-Up",5,"Never lose a lead because you were busy."],
+["Send a 2-sentence reactivation email","Email, Text & Follow-Up",3,"Wake up old contacts with almost no effort."],
+["Add an abandoned inquiry follow-up text","Email, Text & Follow-Up",4,"Recover leads who almost bought."],
+["Create a welcome email for new signups","Email, Text & Follow-Up",5,"First impressions that sell while you sleep."],
+["Ask every happy customer for a referral by text","Email, Text & Follow-Up",2,"Timing + a text = referrals on demand."],
+["Send a birthday / anniversary offer","Email, Text & Follow-Up",4,"Personal offers people actually open."],
+["Add a PS with an offer to your emails","Email, Text & Follow-Up",2,"The PS is the most-read line — use it."],
+["Clean 20 dead contacts from your list","Email, Text & Follow-Up",5,"Better deliverability, lower costs, cleaner data."],
+["Set a same-day quote follow-up reminder","Email, Text & Follow-Up",3,"Speed to follow-up wins the job."],
+["Text a photo update to a waiting customer","Email, Text & Follow-Up",2,"Delight customers and earn the review ask later."],
+["Add your booking link to your signature","Email, Text & Follow-Up",3,"Every email becomes a booking channel."],
+["Join a local Facebook group & introduce yourself","Local & Community",5,"Free visibility where your neighbors already are."],
+["List your business in the local directory","Local & Community",5,"Another trusted place customers find you."],
+["Partner with one neighboring business","Local & Community",5,"Borrow trust from a business your customers love."],
+["Add yourself to Nextdoor","Local & Community",4,"Get recommended where neighborhoods ask."],
+["Sponsor a tiny local thing for visibility","Local & Community",5,"Your name in front of the whole community, cheap."],
+["Drop cards at 3 complementary businesses","Local & Community",5,"Be present where your buyers already go."],
+["Claim your Chamber / local listings","Local & Community",5,"Credibility links that also help search."],
+["Host a 5-minute expert Q&A online","Local & Community",5,"Authority without an event budget."],
+["Add a community board / local shout-out post","Local & Community",4,"Generosity that gets shared locally."],
+["Google 'near me' yourself & fix what you see","Local & Community",5,"See your business through a buyer's eyes."],
+["Update your signage photo online","Local & Community",3,"Help customers recognize you on arrival."],
+["List an event / class / special on Google","Local & Community",4,"Events show up in search — free promotion."],
+["Thank a local partner publicly online","Local & Community",3,"Goodwill that often gets returned and shared."],
+["Add your business to a niche directory","Local & Community",5,"High-intent buyers browse niche directories."],
+["Put a QR code in your window","Local & Community",4,"Turn foot traffic into followers and reviews."],
+["Launch a simple referral reward","Offers & Referrals",5,"Turn happy customers into your sales team."],
+["Create a first-time customer offer","Offers & Referrals",5,"Lower the risk of trying you once."],
+["Add a limited-time bonus to your core offer","Offers & Referrals",4,"Urgency without discounting your price away."],
+["Bundle two services into one easy yes","Offers & Referrals",5,"Higher ticket, simpler decision."],
+["Add a guarantee to your main offer","Offers & Referrals",4,"Remove risk and watch conversions rise."],
+["Put your pricing / starting-at price online","Offers & Referrals",5,"Price transparency builds instant trust."],
+["Create a gift card link & post it","Offers & Referrals",5,"Let happy customers buy for others, easily."],
+["Add an upsell at booking / checkout","Offers & Referrals",5,"One extra offer at the moment of buying."],
+["Make a one-page flyer for your best offer","Offers & Referrals",5,"A single sheet you can post, hand out, and share."],
+["Add scarcity honestly: spots this week","Offers & Referrals",3,"Real availability creates real action."],
+["Follow up every quote with a deadline offer","Offers & Referrals",4,"Give undecided buyers a reason to decide now."],
+["Ask 3 partners to share your offer","Offers & Referrals",4,"Other people's audiences, zero ad spend."],
+["Put your offer in your voicemail greeting","Offers & Referrals",3,"Even missed calls can sell for you."],
+["Add your offer to invoices & receipts","Offers & Referrals",3,"Every transaction markets the next one."],
+["Create a VIP list for your best customers","Offers & Referrals",5,"Make your best buyers feel — and spend — like VIPs."],
+];
+const cats=["All 100",...new Set(T.map(x=>x[1]))];
+let active="All 100", q="";
+const chipsEl=document.getElementById('chips'), grid=document.getElementById('grid'), countEl=document.getElementById('countline');
+cats.forEach(c=>{const b=document.createElement('button');b.className='chip'+(c===active?' active':'');b.textContent=c;b.onclick=()=>{active=c;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.textContent===c));render()};chipsEl.appendChild(b)});
+document.getElementById('search').addEventListener('input',e=>{q=e.target.value.toLowerCase();render()});
+function render(){
+  const list=T.map((t,i)=>({t,i})).filter(({t})=>(active==="All 100"||t[1]===active)&&(!q||(t[0]+t[1]+t[3]).toLowerCase().includes(q)));
+  countEl.innerHTML=`Showing <strong>${list.length} of 100 tactics</strong> — light preview only. Full steps, wording & settings are locked in the $49 package.`;
+  grid.innerHTML=list.map(({t,i})=>`<button class="card" onclick="openModal(${i})"><div class="card-top"><span class="no">TACTIC #${String(i+1).padStart(3,'0')} · ${t[1].toUpperCase()}</span><span class="time">⏱ ${t[2]} min</span></div><h3>${t[0]}</h3><p>${t[3]}</p><div class="card-foot"><span class="lock">🔒 Steps locked</span><span class="unlock">Preview →</span></div></button>`).join('')||`<p style="color:var(--muted)">No tactics match that search. Try “review”, “Google”, or “offer”.</p>`;
+}
+function openModal(i){const t=T[i];document.getElementById('mNo').textContent=`TACTIC #${String(i+1).padStart(3,'0')} — LIGHT PREVIEW`;document.getElementById('mTitle').textContent=t[0];document.getElementById('mTeaser').textContent=t[3];document.getElementById('mTime').textContent=`⏱ ${t[2]} minutes`;document.getElementById('mCat').textContent=t[1];document.getElementById('modal').showModal()}
+render();
+// timer loop 5:00 -> 0
+let s=300;setInterval(()=>{s=s<=0?300:s-1;const m=String(Math.floor(s/60)).padStart(2,'0'),sec=String(s%60).padStart(2,'0');document.getElementById('timer').textContent=`${m}:${sec}`},1000);
+</script>
 </body>
 </html>
