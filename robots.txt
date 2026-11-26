@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://under5minutes.org/sitemap.xml
