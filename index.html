@@ -85,6 +85,7 @@ section{padding:64px 0} .alt{background:var(--bg2)}
 .time{font-size:12px;font-weight:800;background:#e8f5f1;color:#0d7a63;padding:5px 8px;border-radius:999px}
 @media(prefers-color-scheme:dark){.time{background:#16382f;color:#7ee0c3}}
 .card h3{font-size:18px;line-height:1.15;margin-bottom:8px;font-family:"Public Sans";font-weight:800;letter-spacing:-.01em}
+.title-blur{filter:blur(5px);-webkit-filter:blur(5px);user-select:none;-webkit-user-select:none}
 .card p{font-size:14px;color:var(--muted);line-height:1.45;min-height:40px}
 .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;font-weight:700}
 .lock{color:var(--muted);font-weight:600;display:flex;gap:6px;align-items:center}
@@ -405,9 +406,10 @@ document.getElementById('search').addEventListener('input',e=>{q=e.target.value.
 function render(){
   const list=T.map((t,i)=>({t,i})).filter(({t})=>(active==="All 100"||t[1]===active)&&(!q||(t[0]+t[1]+t[3]).toLowerCase().includes(q)));
   countEl.innerHTML=`Showing <strong>${list.length} of 100 tactics</strong> — light preview only. Full steps, wording & settings are locked in the $49 package.`;
-  grid.innerHTML=list.map(({t,i})=>`<button class="card" onclick="openModal(${i})"><div class="card-top"><span class="no">TACTIC #${String(i+1).padStart(3,'0')} · ${t[1].toUpperCase()}</span><span class="time">⏱ ${t[2]} min</span></div><h3>${t[0]}</h3><p>${t[3]}</p><div class="card-foot"><span class="lock">🔒 Steps locked</span><span class="unlock">Preview →</span></div></button>`).join('')||`<p style="color:var(--muted)">No tactics match that search. Try “review”, “Google”, or “offer”.</p>`;
+function blurTitle(title){const words=String(title).split(' ');if(words.length<3)return title;const target=title.length*0.6;let len=0,cut=0;for(let k=0;k<words.length;k++){len+=words[k].length+(k?1:0);if(len<=target)cut=k+1;else break}if(cut<1)cut=1;if(cut>=words.length)cut=words.length-1;return words.slice(0,cut).join(' ')+' <span class="title-blur" aria-hidden="true">'+words.slice(cut).join(' ')+'</span>'}
+  grid.innerHTML=list.map(({t,i})=>`<button class="card" onclick="openModal(${i})"><div class="card-top"><span class="no">TACTIC #${String(i+1).padStart(3,'0')} · ${t[1].toUpperCase()}</span><span class="time">⏱ ${t[2]} min</span></div><h3>${blurTitle(t[0])}</h3><p>${t[3]}</p><div class="card-foot"><span class="lock">🔒 Steps locked</span><span class="unlock">Preview →</span></div></button>`).join('')||`<p style="color:var(--muted)">No tactics match that search. Try “review”, “Google”, or “offer”.</p>`;
 }
-function openModal(i){const t=T[i];document.getElementById('mNo').textContent=`TACTIC #${String(i+1).padStart(3,'0')} — LIGHT PREVIEW`;document.getElementById('mTitle').textContent=t[0];document.getElementById('mTeaser').textContent=t[3];document.getElementById('mTime').textContent=`⏱ ${t[2]} minutes`;document.getElementById('mCat').textContent=t[1];document.getElementById('modal').showModal()}
+function openModal(i){const t=T[i];document.getElementById('mNo').textContent=`TACTIC #${String(i+1).padStart(3,'0')} — LIGHT PREVIEW`;document.getElementById('mTitle').innerHTML=blurTitle(t[0]);document.getElementById('mTeaser').textContent=t[3];document.getElementById('mTime').textContent=`⏱ ${t[2]} minutes`;document.getElementById('mCat').textContent=t[1];document.getElementById('modal').showModal()}
 render();
 // timer loop 5:00 -> 0
 let s=300;setInterval(()=>{s=s<=0?300:s-1;const m=String(Math.floor(s/60)).padStart(2,'0'),sec=String(s%60).padStart(2,'0');document.getElementById('timer').textContent=`${m}:${sec}`},1000);
